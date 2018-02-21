@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% if  duty %}
+{% block title %} Dienstplan - Eintrag Nr. {{ duty.duty_number }} {% endblock %}
+
+{% block content %}
+<h2>Dienstplan - Eintrag Nr. {{ duty.duty_number }}</h2>
+<table class="table">
+    <tr>
+        <td><b>Dienstgebiet</b></td>
+        <td>{{ duty.duty_area }}</td>
+    </tr>
+    <tr>
+        <td><b>Dienstbeginn</b></td>
+        <td>{{ duty.duty_start }}</td>
+    </tr>
+    <tr>
+        <td><b>Dienstende</b></td>
+        <td>{{ duty.duty_end }}</td>
+    </tr>
+    <tr>
+        <td><b>Dienstart</b></td>
+        <td>{{ duty.category }}</td>
+    </tr>
+    <tr>
+        <td><b>Teilnehmer</b></td>
+        <td>
+            <div class="progress">
+                {% if  duty.getAEKcount == 0 %}
+                <div class="progress-bar progress-bar progress-bar-danger" role="progressbar"
+                     aria-valuenow="{{ duty.getAEKcount }}*100%/{{ duty.minaek }}" aria-valuemin="0"
+                     aria-valuemax="100" style="min-width: 2em; width: 0%;">
+                    0/{{ duty.minaek }}
+                </div>
+                {% elif  duty.getAEKcount >=  duty.minaek %}
+                <div class="progress-bar progress-bar progress-bar-success" role="progressbar"
+                     aria-valuenow="100%" aria-valuemin="0"
+                     aria-valuemax="100" style="min-width: 2em; width: 100%;">
+                    {{ duty.getAEKcount }}/{{ duty.minaek }}
+                </div>
+                {% else %}
+                <div class="progress-bar" role="progressbar"
+                     aria-valuenow="{{ duty.getAEKcount }}*100%/{{ duty.minaek }}" aria-valuemin="0"
+                     aria-valuemax="100"
+                     style="min-width: 2em; width: calc({{ duty.getAEKcount }}*100%/{{ duty.minaek }});">
+                    {{ duty.getAEKcount }}/{{ duty.minaek }}
+                </div>
+                {% endif %}
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Funktion</th>
+                    <th>Von - Bis</th>
+                    <th>Handynummer</th>
+                    <th>Bemerkung</th>
+                </tr>
+                {% for takes_part in  duty.takes_part_in_duty_set.all|dictsort:"member.status" %}
+                <tr>
+                    <td>{{ takes_part.member.user.first_name }} {{ takes_part.member.user.last_name }}</td>
+                    <td>{{ takes_part.member.get_status_display }}</td>
+                    <td>{% if not takes_part.function is null %}{{ takes_part.function }}{% endif %}</td>
+                    <td>{{ takes_part.from_time|date:'d.m.Y (H:i)' }} - {{ takes_part.to_time|date:'d.m.Y (H:i)' }}</td>
+                    <td>{{ takes_part.member.mobile }}</td>
+                    <td>{{ takes_part.comment }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <a href="mailto: {% for member in  duty.members.all %}{{ member.user.email }}, {% endfor %} "
+               class="btn btn-success" role="button">Mail an alle Teilnehmer</a>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Bemerkung</b></td>
+        <td>{{ duty.bemerkung }}</td>
+    </tr>
+</table>
+{% endblock %}
+{% else %}
+<p>Dienst nicht hinterlegt!</p>
+{% endif %}

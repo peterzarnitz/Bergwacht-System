@@ -1,0 +1,257 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background: #ffffff;
+}
+
+.navbar-bergwacht {
+  background-color: #0093C6;
+  border-color: #ffffff;
+  min-height: 60px;
+}
+
+.navbar-bergwacht .navbar-brand {
+  color: #ffffff;
+  font-weight: bold;
+}
+.navbar-bergwacht .navbar-brand:hover,
+.navbar-bergwacht .navbar-brand:focus {
+  color: #dddddd;
+  background-color: transparent;
+}
+.navbar-bergwacht .navbar-text {
+  color: #ffffff;
+}
+.navbar-bergwacht .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-bergwacht > a {
+    color: #ffffff;
+}
+.navbar-bergwacht .navbar-nav > li > a:hover,
+.navbar-bergwacht .navbar-nav > li > a:focus {
+  color: #dddddd;
+  background-color: transparent;
+}
+.navbar-bergwacht .navbar-nav > .active > a,
+.navbar-bergwacht .navbar-nav > .active > a:hover,
+.navbar-bergwacht .navbar-nav > .active > a:focus {
+  color: #eeeeee;
+  background-color: #e7e7e7;
+}
+.navbar-bergwacht .navbar-nav > .disabled > a,
+.navbar-bergwacht .navbar-nav > .disabled > a:hover,
+.navbar-bergwacht .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-bergwacht .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-bergwacht .navbar-toggle:hover,
+.navbar-bergwacht .navbar-toggle:focus {
+  background-color: #ddd;
+}
+.navbar-bergwacht .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+.navbar-bergwacht .navbar-collapse,
+.navbar-bergwacht .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-bergwacht .navbar-nav > .open > a,
+.navbar-bergwacht .navbar-nav > .open > a:hover,
+.navbar-bergwacht .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+@media (max-width: 767px) {
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > li > a {
+    color: #777;
+  }
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333;
+    background-color: transparent;
+  }
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-bergwacht .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+  }
+}
+.navbar-bergwacht .navbar-link {
+  color: #fff;
+}
+.navbar-bergwacht .navbar-link:hover {
+  color: #fff;
+}
+.navbar-bergwacht .btn-link {
+  color: #777;
+}
+.navbar-bergwacht .btn-link:hover,
+.navbar-bergwacht .btn-link:focus {
+  color: #333;
+}
+.navbar-bergwacht .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-bergwacht .btn-link:hover,
+.navbar-bergwacht .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-bergwacht .btn-link:focus {
+  color: #ccc;
+}
+
+
+/* LOGIN STYLE */
+.panel-login {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #1484c7;
+	font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+	height: 45px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+	outline:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+}
+.btn-login {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
+}
+.forgot-password {
+	text-decoration: underline;
+	color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+	text-decoration: underline;
+	color: #666;
+}
+
+.btn-register {
+	background-color: #1CB94E;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #1CA347;
+	border-color: #1CA347;
+}
+
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+body{margin-top:20px;}
+.fa-fw {width: 2em;}
+
+
+
+
+.nav-sidebar {
+    width: 100%;
+    padding: 8px 0;
+    border-right: 1px solid #ddd;
+}
+.nav-sidebar a {
+    color: #333;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+}
+.nav-sidebar .active a {
+    cursor: default;
+    background-color: #1794c4;
+    color: #fff;
+    /*text-shadow: 1px 1px 1px #666;*/
+}
+.nav-sidebar .active a:hover {
+    background-color: #1794c4;
+}
+.nav-sidebar .text-overflow a,
+.nav-sidebar .text-overflow .media-body {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+/* Right-aligned sidebar */
+.nav-sidebar.pull-right {
+    border-right: 0;
+    border-left: 1px solid #ddd;
+}
+.nav-sidebar.pull-right a {
+    -webkit-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+}

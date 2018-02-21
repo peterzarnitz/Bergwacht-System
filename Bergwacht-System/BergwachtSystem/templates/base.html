@@ -1,0 +1,72 @@
+{% load cms_tags sekizai_tags %}
+{% load static %}
+{% load bootstrap3 %}
+{% load menu_tags %}
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {# jquery #}
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+
+    {# bootstrap3 #}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" media="all">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.css' %}" media="all">
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/transition.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/collapse.js' %}"></script>
+
+    {# moment.js #}
+    <script src="{% static 'momentjs/moment-with-locales.min.js' %}"></script>
+
+    {# Date-Time-Picker #}
+    <link href="{% static 'bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}" media="all"
+          rel="stylesheet">
+    <script type="text/javascript"
+            src="{% static 'bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' %}"></script>
+
+    {# DataTables #}
+    <link href="{% static 'datatables/jquery.dataTables.min.css' %}" media="all" rel="stylesheet">
+    <link href="{% static 'datatables/dataTables.bootstrap.min.css' %}" media="all" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'datatables/dataTables.bootstrap.min.js' %}"></script>
+
+
+    {# Own Additions #}
+    <script type="text/javascript" src="{% static 'bootstrap/js/addition.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/addition.css' %}">
+
+
+    <title>Bergwacht München - {% page_attribute "page_title" %}</title>
+    {% render_block "css" %}
+    {% show_menu 0 1 100 100 "menu.html" %}
+    <!-- django CMS toolbar adjustment -->
+    {% if request.toolbar %}
+    <style>
+    .cms-toolbar-expanded .navbar {
+        margin-top: 45px;
+    }
+    </style>
+    {% endif %}
+</head>
+<body>
+<div id="content" class="col-xs-12 col-sm-12 col-md-12">
+    {% cms_toolbar %}
+    <div class="container">
+        {% block content %}{% endblock %}
+        {% render_block "js" %}
+    </div>
+</div>
+<div class="container">
+    {% static_placeholder 'footer' %}
+</div>
+</body>
+</html>

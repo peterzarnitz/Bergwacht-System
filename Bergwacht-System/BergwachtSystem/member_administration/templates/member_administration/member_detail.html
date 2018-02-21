@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% if member %}
+{% block title %} {{ member.user.first_name }} {{ member.user.last_name }} {% endblock %}
+
+{% block content %}
+<h1>{{ member.user.first_name }} {{ member.user.last_name }}</h1>
+<p>
+    <a class="btn btn-default" href="{% url 'member_administration:index' %}" role="button"><span
+            class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Zurück zur Liste</a>
+</p>
+<div id="content" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+                <th>Status</th>
+                <td>{{ member.get_status_display }}</td>
+            </tr>
+            <tr>
+                <th>E-Mail</th>
+                <td><a href="mailto: {{ member.user.email }}">{{ member.user.email }}</a></td>
+            </tr>
+            <tr>
+                <th>Handy</th>
+                <td>{{ member.mobile }}</td>
+            </tr>
+            {% if not member.adress_street == None %}
+            <tr>
+                <th>Adresse</th>
+                <td>{{ member.adress_street }}<br>{{ member.adress_plz }} {{ member.adress_ort }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Geburtstag / Alter</th>
+                <td>{{ member.birthdate }} / {{ member.getAge }}</td>
+            </tr>
+            <tr>
+                <th>BW Eintritt</th>
+                <td>{{ member.bw_join }}</td>
+            </tr>
+            {% if all_qualifications %}
+            <tr>
+                <th>Qualifikationen</th>
+                <td>
+                    <table class="table">
+                        {% for qualification in all_qualifications %}
+                        <tr>
+                            <td>{{ qualification.name }}</td>
+                            {% for member_qualification in member_qualifications %}
+                            <td>
+                                {% if qualification == member_qualification.qualification %}
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if qualification == member_qualification.qualification %}
+                                {{ member_qualification.date }}
+                                {% endif %}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% else %}
+<p>Mitglied nicht hinterlegt!</p>
+{% endif %}

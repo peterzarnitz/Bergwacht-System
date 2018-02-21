@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block title %} Anmeldung zum Dienst Nr. {{ dienst.dienstnummer }} {% endblock %}
+{% if duty %}
+
+{% block content %}
+<h2>Anmeldung zum Dienst Nr. {{ duty.duty_number }}</h2>
+
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div id="content" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        {{ duty.duty_start|date:'d.m.Y (H:i)' }} - {{ duty.duty_end|date:'d.m.Y (H:i)' }}
+
+        {% bootstrap_form_errors form %}
+        {% bootstrap_form form %}
+
+        <input type="submit" value="Anmelden" class="btn btn-default"/>
+    </div>
+</form>
+
+<script type="text/javascript">
+        $(function () {
+            $('.datetime').parent().datetimepicker({
+                locale: 'de',
+                format: 'DD.MM.YYYY HH:mm',
+            });
+        });
+</script>
+
+{{ error_message }}
+
+{% endblock %}
+
+{% else %}
+<p>Dienst nicht hinterlegt!</p>
+{% endif %}

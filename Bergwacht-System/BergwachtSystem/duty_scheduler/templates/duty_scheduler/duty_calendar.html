@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% if duty_list %}
+
+{% block title %} Dienstplan {% endblock %}
+
+{% block content %}
+<h1>Dienstplan</h1>
+
+<ul class="nav nav-tabs nav-justified">
+    <li role="presentation"><a href="{% url 'duty_scheduler:duty_list' %}"> Liste </a></li>
+    <li role="presentation" class="active"><a href="#"> Kalender </a></li>
+</ul>
+
+<div class="container">
+
+    <div class="row">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"
+                                                                aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default">Heute</button>
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"
+                                                                aria-hidden="true"></span></button>
+
+            MONAT - JAHR
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th class="col-md-1">Montag</th>
+                    <th class="col-md-1">Dienstag</th>
+                    <th class="col-md-1">Mittwoch</th>
+                    <th class="col-md-1">Donnerstag</th>
+                    <th class="col-md-1">Freitag</th>
+                    <th class="col-md-1">Samstag</th>
+                    <th class="col-md-1">Sonntag</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% else %}
+<p>Keine aktuellen Dienste angelegt!</p>
+{% endif %}
