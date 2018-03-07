@@ -31,11 +31,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BergwachtSystem/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
+            <state relative-caret-position="-1685">
               <caret line="27" column="16" lean-forward="false" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addition.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/bootstrap/css/addition.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="852">
+              <caret line="213" column="0" lean-forward="true" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="0006_auto_20180305_1955.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trainings/migrations/0006_auto_20180305_1955.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -149,11 +169,11 @@
         <option value="$PROJECT_DIR$/trainings/urls.py" />
         <option value="$PROJECT_DIR$/trainings/views.py" />
         <option value="$PROJECT_DIR$/trainings/templates/trainings/training_permit.html" />
-        <option value="$PROJECT_DIR$/static/bootstrap/css/addition.css" />
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/BergwachtSystem/settings.py" />
+        <option value="$PROJECT_DIR$/static/bootstrap/css/addition.css" />
       </list>
     </option>
   </component>
@@ -207,16 +227,6 @@
             <path>
               <item name="BergwachtSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BergwachtSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="member_administration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BergwachtSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -231,29 +241,6 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BergwachtSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BergwachtSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="trainings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BergwachtSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="trainings" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BergwachtSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="trainings" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="trainings" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -363,13 +350,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/jquery/jquery.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -624,13 +604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/bootstrap/css/addition.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="907">
-          <caret line="213" column="0" lean-forward="true" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/trainings/templates/trainings/training_permit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -707,10 +680,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/trainings/migrations/0006_auto_20180305_1955.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BergwachtSystem/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="-1685">
           <caret line="27" column="16" lean-forward="false" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/bootstrap/css/addition.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="852">
+          <caret line="213" column="0" lean-forward="true" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -211,3 +211,8 @@ body{margin-top:20px;}
 .fa-fw {width: 2em;}
 
 
+
+
+div.cms .cms-toolbar-item-logo a:before {
+    display: none;
+}
