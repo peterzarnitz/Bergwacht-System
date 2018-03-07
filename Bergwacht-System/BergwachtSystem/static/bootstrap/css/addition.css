@@ -214,5 +214,5 @@ body{margin-top:20px;}
 
 
 div.cms .cms-toolbar-item-logo a:before {
-    content: "/static/media/img/Logo-253-comp.jpg";
+    display: none;
 }
