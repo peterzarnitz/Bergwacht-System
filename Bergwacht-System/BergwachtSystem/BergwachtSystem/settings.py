@@ -164,6 +164,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+STATIC_ROOT = "/webapps/bwsysenv/static/"
+
 LOGIN_REDIRECT_URL = '/'
 
 LOGIN_URL = '/login/'
