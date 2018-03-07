@@ -29,10 +29,15 @@
         <tr>
             <td><a href="{% url 'duty_scheduler:duty_detail' duty.duty_number %}" class="btn btn-default"
                    role="button">{{ duty.duty_number }}</a></td>
-            <td>{{ duty.duty_area.name }}</td>
+            <td>{% if duty.duty_area.link %}
+                <a href="{{ duty.duty_area.link }}">{{ duty.duty_area.name }}</a>
+                {% else %}
+                {{ duty.duty_area.name }}
+                {% endif %}
+            </td>
             <td>{{ duty.duty_start|date:'d.m.Y' }}<br>{{ duty.duty_start|date:'H:i' }}</td>
             <td>{{ duty.duty_end|date:'d.m.Y' }}<br>{{ duty.duty_end|date:'H:i' }}</td>
-            <td>{{ duty.category }}</td>
+            <td>{{ duty.category }}<br>{% if not duty.detail is null %}{{ duty.detail }}{% endif %}</td>
             <td>
                 <div class="progress">
                     {% if duty.getAEKcount == 0 %}

@@ -5,24 +5,28 @@
 {% load static %}
 
 {% block content %}
+
 <div class="row">
     <div class="col-md-3">
-
-        <nav class="nav-sidebar">
-            <ul class="nav">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Menü</h3>
+            </div>
+            <div class="list-group">
                 {% for child in children %}
-                <li class="child {% if child.selected %}active selected{% endif %} {% if child.ancestor %}ancestor{% endif %} {% if child.sibling %}sibling{% endif %} {% if child.descendant %}descendant{% endif %}">
-                    <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">{{ child.get_menu_title }}</a>
-                    {% if child.children %}
-                    <ul>
-                        {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
-                    </ul>
-                    {% endif %}
-                </li>
+                <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}"
+                   class="list-group-item child {% if child.selected %}active selected{% endif %} {% if child.ancestor %}ancestor{% endif %} {% if child.sibling %}sibling{% endif %} {% if child.descendant %}descendant{% endif %}">
+                    <b>{{ child.get_menu_title }}</b></a>
+                {% if child.children %}
+                {% for child2 in child.children %}
+                <a href="{{ child2.attr.redirect_url|default:child2.get_absolute_url }}"
+                   class="list-group-item child {% if child2.selected %}active selected{% endif %} {% if child2.ancestor %}ancestor{% endif %} {% if child2.sibling %}sibling{% endif %} {% if child2.descendant %}descendant{% endif %}">
+                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> {{ child2.get_menu_title }}</a>
                 {% endfor %}
-            </ul>
-        </nav>
-
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <div class="col-md-9">
         {% placeholder "feature" %}
@@ -30,5 +34,4 @@
         {% placeholder "splashbox" %}
     </div>
 </div>
-
 {% endblock %}

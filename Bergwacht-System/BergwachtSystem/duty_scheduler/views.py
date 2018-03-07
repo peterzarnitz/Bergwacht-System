@@ -58,7 +58,7 @@ def duty_signin(request, duty_number):
                 error_message = 'Abmeldezeit muss nach Anmeldezeit liegen'
 
     else:
-        form = Duty_signup_form()
+        form = Duty_signup_form(initial={'from_time': duty.duty_start, 'to_time': duty.duty_end})
     return render(request, 'duty_scheduler/duty_register.html',
                   {'form': form, 'duty': duty, 'error_message': error_message})
 

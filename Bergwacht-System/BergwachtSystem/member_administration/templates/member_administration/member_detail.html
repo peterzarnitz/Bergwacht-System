@@ -4,11 +4,11 @@
 {% block title %} {{ member.user.first_name }} {{ member.user.last_name }} {% endblock %}
 
 {% block content %}
-<h1>{{ member.user.first_name }} {{ member.user.last_name }}</h1>
 <p>
     <a class="btn btn-default" href="{% url 'member_administration:index' %}" role="button"><span
             class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Zurück zur Liste</a>
 </p>
+<h1>{{ member.user.first_name }} {{ member.user.last_name }}</h1>
 <div id="content" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <div class="table-responsive">
         <table class="table table-bordered">
@@ -67,6 +67,18 @@
         </table>
     </div>
 </div>
+
+<div id="content" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    {% for training_category in all_trainingCategories %}
+    <div class="table-responsive">
+        <h2>{{ training_category.name }}</h2>
+        <table class="table table-bordered">
+
+        </table>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
 {% else %}
 <p>Mitglied nicht hinterlegt!</p>

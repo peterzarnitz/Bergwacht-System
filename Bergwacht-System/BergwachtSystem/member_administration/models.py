@@ -31,8 +31,11 @@ class Member(models.Model):
         verbose_name_plural = 'Mitglieder'
         ordering = ['status', 'user__last_name']
 
-    def __str__(self):
-        return self.user.username
+    def __unicode__(self):
+        if not self.user.last_name:
+            return self.user.username
+        else:
+            return self.user.last_name + ', ' + self.user.first_name
 
     def isAnwaerter(self):
         return self.status == 'ANW'
@@ -56,7 +59,7 @@ class Qualification(models.Model):
     class Meta:
         verbose_name_plural = 'Qualifikation'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
@@ -69,7 +72,7 @@ class MemberHasQualification(models.Model):
     class Meta:
         verbose_name_plural = 'Qualifikationen von Mitgliedern'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.member.user.username + '-' + self.qualification.name
 
 

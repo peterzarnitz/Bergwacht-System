@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Ausbildung {% endblock %}
+
+{% block content %}
+<h1>Ausbildungen</h1>
+
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Menü</h3>
+        </div>
+        <div class="list-group">
+            <a href="{% url 'trainings:training_overview' %}" class="list-group-item {% if nav == 'start' %}active{% endif %}"><span
+                    class="glyphicon glyphicon-home"
+                    aria-hidden="true"></span> Start</a>
+            <a href="{% url 'trainings:training_list' %}" class="list-group-item {% if nav == 'list' %}active{% endif %}"><span
+                    class="glyphicon glyphicon-th-list"
+                    aria-hidden="true"></span> Liste</a>
+            <a href="{% url 'trainings:training_dates' %}" class="list-group-item {% if nav == 'dates' %}active{% endif %}"><span
+                    class="glyphicon glyphicon-calendar"
+                    aria-hidden="true"></span> Termine</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-9">
+    {% block training_content %} {% endblock %}
+</div>
+{% endblock %}

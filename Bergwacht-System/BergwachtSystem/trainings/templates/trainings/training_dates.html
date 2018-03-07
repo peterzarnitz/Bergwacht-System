@@ -1,0 +1,95 @@
+{% extends 'training_base.html' %}
+
+{% block title %} Ausbildungen {% endblock %}
+
+{% block training_content %}
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Ausbildung</th>
+            <th>Beginn</th>
+            <th>Ende</th>
+            <th>Plätze</th>
+            <th>Ausbilder</th>
+            <th>Teilnehmer</th>
+            <th>Anmeldung</th>
+            <th></th>
+        </tr>
+        {% for trainingevent in training_events %}
+        <tr>
+            <td>{{ trainingevent.training.name }}</td>
+            <td>{{ trainingevent.event_start|date:'d.m.Y' }}<br>{{ trainingevent.event_start|date:'H:i' }}</td>
+            <td>{{ trainingevent.event_end|date:'d.m.Y' }}<br>{{ trainingevent.event_end|date:'H:i' }}</td>
+            <td>
+                <div class="progress">
+                    {% if trainingevent.getMemberCount <= trainingevent.max_member %}
+                    <div class="progress-bar progress-bar progress-bar-success" role="progressbar"
+                         aria-valuenow="{{ trainingevent.getMemberCount }}*100%/{{ trainingevent.minaek }}"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="min-width: 2em; width: calc({{ trainingevent.getMemberCount }}*100%/{{ trainingevent.max_member }});">
+                        {{ trainingevent.getMemberCount }}/{{ trainingevent.max_member }}
+                    </div>
+                    {% else %}
+                    <div class="progress-bar progress-bar-danger" role="progressbar"
+                         aria-valuenow="100%" aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="min-width: 2em; width: 100%">
+                        {{ trainingevent.getMemberCount }}/{{ trainingevent.max_member }}
+                    </div>
+                    {% endif %}
+                </div>
+            </td>
+            <td>{% for trainer in trainingevent.trainer.all %}
+                <a href="{% url 'member_administration:member_detail' trainer.user.username %}">
+                    {{ trainer.user.first_name}} {{ trainer.user.last_name }}</a>
+                <br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for member in trainingevent.participants.all %}
+                <a href="{% url 'member_administration:member_detail' member.user.username %}">
+                    {{ member.user.first_name}} {{ member.user.last_name }}</a>
+                <br>
+                {% endfor %}
+            </td>
+            <td>
+                {% if not trainingevent.direct_registration %}
+                {% if current_member in trainingevent.possible_participants.all %}
+                <a href="{% url 'trainings:deregister_time_for_training' trainingevent.training_event_id %}"
+                   class="btn btn-danger"
+                   role="button">Keine Zeit mehr</a>
+                {% else %}
+                {% if current_member in trainingevent.participants.all %}
+                <a href="#" class="btn btn-success disabled" role="button">Angemeldet</a>
+                {% else %}
+                <a href="{% url 'trainings:register_time_for_training' trainingevent.training_event_id %}"
+                   class="btn btn-primary"
+                   role="button">Ich habe Zeit</a>
+                {% endif %}
+                {% endif %}
+                {% else %}
+                {% if current_member in trainingevent.participants.all %}
+                <a href="#"
+                   class="btn btn-danger"
+                   role="button">Abmelden</a>
+                {% else %}
+                <a href="#" class="btn btn-primary"
+                   role="button">Anmelden</a>
+                {% endif %}
+                {% endif %}
+            </td>
+            <td>
+                {% if perms.trainings.can_add_participates_in_trainingevent %}
+                <a href="{% url 'trainings:permit_for_training' trainingevent.training_event_id %}"
+                   class="btn btn-default"><span class="glyphicon glyphicon-wrench"
+                                                 aria-hidden="true"></span> <span class="badge">{{ trainingevent.possible_participants.all | length }}</span></a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+

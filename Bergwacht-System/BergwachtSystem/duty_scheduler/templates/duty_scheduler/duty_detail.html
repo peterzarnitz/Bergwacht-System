@@ -19,8 +19,8 @@
         <td>{{ duty.duty_end }}</td>
     </tr>
     <tr>
-        <td><b>Dienstart</b></td>
-        <td>{{ duty.category }}</td>
+        <td><b>Dienstauftrag</b></td>
+        <td>{{ duty.category }} {% if not duty.detail is null %}({{ duty.detail }}){% endif %}</td>
     </tr>
     <tr>
         <td><b>Teilnehmer</b></td>

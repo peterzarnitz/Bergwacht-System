@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='prerequisites_for_training',
+            name='Prerequisites_for_training',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
             ],
@@ -27,19 +27,19 @@ class Migration(migrations.Migration):
             name='Training',
             fields=[
                 ('name', models.CharField(max_length=50, primary_key=True, serialize=False, verbose_name='Name')),
-                ('prerequisites', models.ManyToManyField(related_name='with_prerequisite', through='trainings.prerequisites_for_training', to='trainings.Training', verbose_name='Voraussetzungen')),
+                ('prerequisites', models.ManyToManyField(related_name='with_prerequisite', through='trainings.Prerequisites_for_training', to='trainings.Training', verbose_name='Voraussetzungen')),
             ],
             options={
                 'verbose_name_plural': 'Ausbildungen',
             },
         ),
         migrations.AddField(
-            model_name='prerequisites_for_training',
+            model_name='Prerequisites_for_training',
             name='from_training',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='from_training', to='trainings.Training'),
         ),
         migrations.AddField(
-            model_name='prerequisites_for_training',
+            model_name='Prerequisites_for_training',
             name='to_training',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='to_training', to='trainings.Training'),
         ),

@@ -13,10 +13,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="{% static 'index.html' %}" class="navbar-brand"><img src="{% static 'img/Logo-253-comp.jpg' %}"
-                                                                              alt="BW München"
-                                                                              height="40px"></a>
-                <a href="{% static 'index.html' %}" class="navbar-brand">Bergwacht München</a>
+                <a href="{% url 'start' %}" class="navbar-brand"><img src="{% static 'img/Logo-253-comp.jpg' %}"
+                                                                      alt="BW München"
+                                                                      height="40px"></a>
+                <a href="{% url 'start' %}" class="navbar-brand">Bergwacht München</a>
             </div>
 
             {% if user.is_authenticated %}
@@ -38,7 +38,7 @@
                             Dienstplan</a>
                     </li>
                     <li>
-                        <a href="{% url 'trainings:training_overview' %}"><span class="glyphicon  glyphicon-education"
+                        <a href="{% url 'trainings:training_overview' %}"><span class="glyphicon glyphicon-education"
                                                                                 aria-hidden="true"></span>
                             Ausbildung</a>
                     </li>
@@ -52,6 +52,17 @@
                 <p class="navbar-text navbar-right">
                     {% if user.is_authenticated %}
                     Angemeldet als {{request.user.first_name}} {{request.user.last_name}}
+
+                    {% if user.is_superuser %}
+                    {% if request.toolbar.build_mode or request.toolbar.edit_mode %}
+                    <a href="?toolbar_off" class="btn btn-success"><span class="glyphicon glyphicon-wrench"
+                                                                         aria-hidden="true"></span></a>
+                    {% else %}
+                    <a href="?edit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench"
+                                                                         aria-hidden="true"></span></a>
+                    {% endif %}
+                    {% endif %}
+
                     <a href="/logout/" class="btn btn-default">Logout</a>
                     {% else %}
                     <a href="/login/" class="btn btn-default">Login</a>

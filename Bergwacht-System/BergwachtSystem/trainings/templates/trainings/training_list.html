@@ -1,0 +1,28 @@
+{% extends 'training_base.html' %}
+
+{% block title %} Ausbildungen {% endblock %}
+
+{% block training_content %}
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Kategorie</th>
+            <th>Voraussetzungen</th>
+        </tr>
+        {% for training in training_list %}
+        <tr>
+            <td>{{ training.name }}</td>
+            <td>{{ training.category.name }}</td>
+            <td>
+                {% for prerequisite in training.prerequisites.all %}
+                    {{ prerequisite.name }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+

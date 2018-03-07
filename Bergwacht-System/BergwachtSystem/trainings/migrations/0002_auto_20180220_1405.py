@@ -14,21 +14,21 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(
-            model_name='prerequisites_for_training',
+            model_name='Prerequisites_for_training',
             name='from_training',
         ),
         migrations.RemoveField(
-            model_name='prerequisites_for_training',
+            model_name='Prerequisites_for_training',
             name='to_training',
         ),
         migrations.AddField(
-            model_name='prerequisites_for_training',
+            model_name='Prerequisites_for_training',
             name='post_training',
             field=models.ForeignKey(default='t', on_delete=django.db.models.deletion.CASCADE, related_name='post_training', to='trainings.Training'),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='prerequisites_for_training',
+            model_name='Prerequisites_for_training',
             name='pre_training',
             field=models.ForeignKey(default='t', on_delete=django.db.models.deletion.CASCADE, related_name='pre_training', to='trainings.Training'),
             preserve_default=False,
