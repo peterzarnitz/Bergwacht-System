@@ -24,7 +24,9 @@ SECRET_KEY = '4$@3q#_(02=dx(l*#124i3!3q875&v5tsir2@qy3u2vjiaarmv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '85.214.64.63'
+]
 
 # Application definition
 
@@ -105,12 +107,13 @@ WSGI_APPLICATION = 'BergwachtSystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'bwsysdb',  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'bwsysdbadmin',
         'PASSWORD': 'BWX8;stehend',
-        'HOST': 'localhost', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'HOST': 'localhost',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',  # Set to empty string for default.
     }
 }
