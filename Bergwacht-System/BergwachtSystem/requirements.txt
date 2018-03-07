@@ -1,2 +1,16 @@
 django-bootstrap3-datetimepicker
-django-bootstrap4
+django-bootstrap3
+django-cms
+django-filer
+djangocms-text-ckeditor
+psycopg2
+djangocms-link
+djangocms-file
+djangocms-picture
+djangocms-video
+djangocms-googlemap
+djangocms-snippet
+djangocms-style
+djangocms-column
+psycopg2-binary
+gunicorn
