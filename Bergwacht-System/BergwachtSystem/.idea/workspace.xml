@@ -44,8 +44,8 @@
       <file leaf-file-name="addition.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/bootstrap/css/addition.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="852">
-              <caret line="213" column="0" lean-forward="true" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+            <state relative-caret-position="867">
+              <caret line="216" column="49" lean-forward="false" selection-start-line="216" selection-start-column="49" selection-end-line="216" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -241,6 +241,12 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BergwachtSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BergwachtSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -698,8 +704,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/bootstrap/css/addition.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="852">
-          <caret line="213" column="0" lean-forward="true" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+        <state relative-caret-position="867">
+          <caret line="216" column="49" lean-forward="false" selection-start-line="216" selection-start-column="49" selection-end-line="216" selection-end-column="49" />
           <folding />
         </state>
       </provider>
