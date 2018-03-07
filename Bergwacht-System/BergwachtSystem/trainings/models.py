@@ -35,9 +35,9 @@ class Training(models.Model):
 
 class Prerequisites_for_training(models.Model):
     pre_training = models.ForeignKey(Training, on_delete=models.CASCADE, related_name='pre_training',
-                                     verbose_name='Voraussetzung')
+                                     verbose_name='Voraussetzung', null=True)
     post_training = models.ForeignKey(Training, on_delete=models.CASCADE, related_name='post_training',
-                                      verbose_name='Für Ausbildung')
+                                      verbose_name='Für Ausbildung', null=True)
 
     class Meta:
         verbose_name_plural = 'Ausbildungsvoraussetzungen'
