@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-#from duty_scheduler.models import Dutyarea
 
 STATUS_CHOICES = (
     ('AEK', 'Aktive Einsatzkraft'),
@@ -17,6 +16,7 @@ STATUS_CHOICES = (
 
 class DutyGroup(models.Model):
     name = models.CharField(max_length=20, verbose_name='Name')
+
     # primary_duty_area = models.ForeignKey(Dutyarea, null=True, blank=True)
 
     class Meta:
@@ -65,7 +65,7 @@ class Member(models.Model):
         today = date.today()
         if self.birthdate != None:
             age = today.year - self.birthdate.year - (
-                        (today.month, today.day) < (self.birthdate.month, self.birthdate.day))
+                    (today.month, today.day) < (self.birthdate.month, self.birthdate.day))
         return age
 
 

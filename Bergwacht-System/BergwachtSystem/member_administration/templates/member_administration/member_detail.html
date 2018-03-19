@@ -76,7 +76,13 @@
     <div class="table-responsive">
         <h2>{{ training_category.name }}</h2>
         <table class="table table-bordered">
-
+            {% for membertraining in all_Trainings %}
+            {% if membertraining.training.category == training_category  %}
+            <tr>
+                {{ membertraining.training.name }}
+            </tr>
+            {% endif %}
+            {% endfor %}
         </table>
     </div>
     {% endfor %}

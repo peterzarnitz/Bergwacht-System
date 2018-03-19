@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from models import Training, Prerequisites_for_training, TrainingCategory, TrainingEvent, Participates_in_trainingevent, Possible_participates_in_trainingevent
+from models import Training, Prerequisites_for_training, TrainingCategory, TrainingEvent, Participates_in_trainingevent
+from models import Possible_participates_in_trainingevent, Member_Trainings
 
 
 class TimeStampAdmin(admin.ModelAdmin):
@@ -15,3 +16,4 @@ admin.site.register(TrainingCategory)
 admin.site.register(TrainingEvent)
 admin.site.register(Participates_in_trainingevent, TimeStampAdmin)
 admin.site.register(Possible_participates_in_trainingevent, TimeStampAdmin)
+admin.site.register(Member_Trainings)

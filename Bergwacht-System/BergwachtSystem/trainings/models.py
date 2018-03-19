@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from member_administration.models import Member
 
@@ -93,7 +93,8 @@ class Possible_participates_in_trainingevent(models.Model):
     trainingevent = models.ForeignKey(TrainingEvent, on_delete=models.CASCADE)
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
     comment = models.TextField(verbose_name='Kommentar', max_length=200, blank=True)
-    first_register_timestamp = models.DateTimeField(default=datetime.now, verbose_name='Erste Anmeldung', editable=True, null=True)
+    first_register_timestamp = models.DateTimeField(default=timezone.now, verbose_name='Erste Anmeldung', editable=True,
+                                                    null=True)
 
     class Meta:
         verbose_name_plural = 'Mögliche Teilnahmen an Ausbildungstermin'
@@ -101,3 +102,14 @@ class Possible_participates_in_trainingevent(models.Model):
 
     def __unicode__(self):
         return 'P - ' + unicode(self.trainingevent) + ' - ' + unicode(self.member)
+
+
+class Member_Trainings(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, verbose_name='Mitglied')
+    training = models.ForeignKey(Training, on_delete=models.CASCADE, verbose_name='Ausbildung')
+
+    class Meta:
+        verbose_name_plural = 'Ausbildung von Mitgliedern'
+
+    def __unicode__(self):
+        return unicode(self.member) + '-' + unicode(self.training)
