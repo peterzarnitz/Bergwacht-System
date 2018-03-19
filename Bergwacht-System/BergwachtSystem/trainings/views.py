@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.utils import timezone
-from datetime import datetime
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
