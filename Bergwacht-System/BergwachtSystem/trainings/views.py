@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.utils import timezone
+from django.db.models.functions import Now
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -40,7 +41,7 @@ def register_time_for_training(request, training_event_id):
     Possible_participates_in_trainingevent.objects.create(
         member=currentMember,
         trainingevent=training_event,
-        first_register_timestamp = timezone.now()
+        first_register_timestamp = Now()
     )
     return redirect('/ausbildung/termine/')
 
