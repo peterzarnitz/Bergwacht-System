@@ -40,7 +40,7 @@ def register_time_for_training(request, training_event_id):
     Possible_participates_in_trainingevent.objects.create(
         member=currentMember,
         trainingevent=training_event,
-        first_register_timestamp = datetime.now()
+        first_register_timestamp = datetime.now
     )
     return redirect('/ausbildung/termine/')
 
