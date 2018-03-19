@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import User, Member, Qualification, MemberHasQualification
+from .models import User, Member, Qualification, MemberHasQualification, DutyGroup, Members_in_Dutygroup
 
 
 class ProfileInline(admin.StackedInline):
@@ -25,3 +25,5 @@ admin.site.unregister(User)
 admin.site.register(User, MemberUserAdmin)
 admin.site.register(Qualification)
 admin.site.register(MemberHasQualification)
+admin.site.register(DutyGroup)
+admin.site.register(Members_in_Dutygroup)

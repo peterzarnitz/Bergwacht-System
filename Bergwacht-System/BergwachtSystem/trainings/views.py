@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import datetime
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -38,7 +39,8 @@ def register_time_for_training(request, training_event_id):
     training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
     Possible_participates_in_trainingevent.objects.create(
         member=currentMember,
-        trainingevent=training_event
+        trainingevent=training_event,
+        first_register_timestamp = datetime.now()
     )
     return redirect('/ausbildung/termine/')
 
@@ -67,11 +69,15 @@ def register_for_training(request, training_event_id, username):
     user = User.objects.get(username=username)
     member = Member.objects.get(user=user)
     training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
+
+    possible_participates_in_trainingevent = Possible_participates_in_trainingevent.objects.get(member=member, trainingevent=training_event)
+
     Participates_in_trainingevent.objects.create(
         member=member,
-        trainingevent=training_event
+        trainingevent=training_event,
+        first_register_timestamp=possible_participates_in_trainingevent.first_register_timestamp
     )
-    Possible_participates_in_trainingevent.objects.filter(member=member, trainingevent=training_event).delete()
+    possible_participates_in_trainingevent.delete()
     return redirect('/ausbildung/freischalten/' + str(training_event_id) + '/')
 
 
@@ -81,15 +87,20 @@ def deregister_for_training(request, training_event_id, username):
     user = User.objects.get(username=username)
     member = Member.objects.get(user=user)
     training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
-    Participates_in_trainingevent.objects.filter(member=member, trainingevent=training_event).delete()
+
+    participates_in_trainingevent = Participates_in_trainingevent.objects.get(member=member, trainingevent=training_event)
+
     Possible_participates_in_trainingevent.objects.create(
         member=member,
-        trainingevent=training_event
+        trainingevent=training_event,
+        first_register_timestamp=participates_in_trainingevent.first_register_timestamp
     )
+    participates_in_trainingevent.delete()
     return redirect('/ausbildung/freischalten/' + str(training_event_id) + '/')
 
 
 @login_required
+@user_passes_test(lambda u: u.has_perm('trainings.can_add_participates_in_trainingevent'))
 def permit_for_training(request, training_event_id):
     training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
     possible_participants = Possible_participates_in_trainingevent.objects.filter(trainingevent=training_event)

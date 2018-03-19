@@ -74,6 +74,7 @@
                 <tr>
                     <th>Teilnehmer</th>
                     <th>Voraussetzungen</th>
+                    <th>Anmeldezeitpunkt</th>
                     <th>Anmeldung</th>
                 </tr>
                 {% for takes_part in possible_participants %}
@@ -82,6 +83,10 @@
                         {{ takes_part.member.user.last_name }}, {{ takes_part.member.user.first_name }}</a></td>
                     <td>
                         TODO
+                    </td>
+                    <td>
+                        {{ takes_part.first_register_timestamp | date:'d.m.Y'}} <br>
+                        {{ takes_part.first_register_timestamp | date:'H:i'}}
                     </td>
                     <td>
                         <a href="{% url 'trainings:register_for_training' training_event.training_event_id takes_part.member.user.username %}"

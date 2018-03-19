@@ -6,12 +6,26 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+#from duty_scheduler.models import Dutyarea
 
 STATUS_CHOICES = (
     ('AEK', 'Aktive Einsatzkraft'),
     ('ANW', 'Anwärter'),
     ('NEK', 'Nicht-aktive Einsatzkraft'),
 )
+
+
+class DutyGroup(models.Model):
+    name = models.CharField(max_length=20, verbose_name='Name')
+    # primary_duty_area = models.ForeignKey(Dutyarea, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Trupps'
+        verbose_name = 'Trupp'
+
+    def __unicode__(self):
+        return self.name
+
 
 # Defines am Member of the Bergwacht with personal data
 class Member(models.Model):
@@ -26,6 +40,8 @@ class Member(models.Model):
     birthdate = models.DateField(verbose_name='Geburtsdatum', null=True, blank=True)
     bw_join = models.DateField(verbose_name='Bergwacht-Eintritt', null=True, blank=True)
     status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='ANW')
+    dutygroups = models.ManyToManyField(DutyGroup, through='Members_in_Dutygroup',
+                                        through_fields=('member', 'dutygroup'), related_name='dutygroups')
 
     class Meta:
         verbose_name_plural = 'Mitglieder'
@@ -48,7 +64,8 @@ class Member(models.Model):
         age = 0;
         today = date.today()
         if self.birthdate != None:
-            age = today.year - self.birthdate.year - ((today.month, today.day) < (self.birthdate.month, self.birthdate.day))
+            age = today.year - self.birthdate.year - (
+                        (today.month, today.day) < (self.birthdate.month, self.birthdate.day))
         return age
 
 
@@ -64,7 +81,7 @@ class Qualification(models.Model):
 
 
 # Connection of Members and Qualifications
-class MemberHasQualification(models.Model): 
+class MemberHasQualification(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, verbose_name='Mitglied')
     qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE, verbose_name='Qualifikation')
     date = models.DateField(verbose_name='Datum', null=True, blank=True)
@@ -74,6 +91,17 @@ class MemberHasQualification(models.Model):
 
     def __unicode__(self):
         return self.member.user.username + '-' + self.qualification.name
+
+
+class Members_in_Dutygroup(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, verbose_name='Mitglied')
+    dutygroup = models.ForeignKey(DutyGroup, on_delete=models.CASCADE, verbose_name='Trupp')
+
+    class Meta:
+        verbose_name_plural = 'Truppmitgliedschaft'
+
+    def __unicode__(self):
+        return unicode(self.member) + '-' + unicode(self.dutygroup)
 
 
 # Creates a Member object if new User is created

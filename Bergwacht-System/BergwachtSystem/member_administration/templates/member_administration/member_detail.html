@@ -9,7 +9,7 @@
             class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Zurück zur Liste</a>
 </p>
 <h1>{{ member.user.first_name }} {{ member.user.last_name }}</h1>
-<div id="content" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+<div id="content1" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <div class="table-responsive">
         <table class="table table-bordered">
             <tr>
@@ -22,9 +22,9 @@
             </tr>
             <tr>
                 <th>Handy</th>
-                <td>{{ member.mobile }}</td>
+                <td>{% if member.mobile %}{{ member.mobile }}{% endif %}</td>
             </tr>
-            {% if not member.adress_street == None %}
+            {% if member.adress_street %}
             <tr>
                 <th>Adresse</th>
                 <td>{{ member.adress_street }}<br>{{ member.adress_plz }} {{ member.adress_ort }}</td>
@@ -38,29 +38,32 @@
                 <th>BW Eintritt</th>
                 <td>{{ member.bw_join }}</td>
             </tr>
+            <tr>
+                <th>Trupp</th>
+                <td>
+                    {% for dutygroup in member.dutygroups.all %}
+                    {{ dutygroup.name }} <br>
+                    {% endfor %}
+                </td>
+            </tr>
             {% if all_qualifications %}
             <tr>
                 <th>Qualifikationen</th>
                 <td>
-                    <table class="table">
-                        {% for qualification in all_qualifications %}
-                        <tr>
-                            <td>{{ qualification.name }}</td>
-                            {% for member_qualification in member_qualifications %}
-                            <td>
-                                {% if qualification == member_qualification.qualification %}
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if qualification == member_qualification.qualification %}
-                                {{ member_qualification.date }}
-                                {% endif %}
-                            </td>
-                            {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </table>
+                    {% for qualification in all_qualifications %}
+                    {% for member_qualification in member_qualifications %}
+                    {% if qualification == member_qualification.qualification %}
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    {% else %}
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    {% endif %}
+                    {{ qualification.name }}
+                    {% if qualification == member_qualification.qualification %}
+                    ({{ member_qualification.date | date:'d.m.Y' }})
+                    {% endif %}
+                    {% endfor %}
+                    <br>
+                    {% endfor %}
                 </td>
             </tr>
             {% endif %}
@@ -68,7 +71,7 @@
     </div>
 </div>
 
-<div id="content" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+<div id="content2" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     {% for training_category in all_trainingCategories %}
     <div class="table-responsive">
         <h2>{{ training_category.name }}</h2>
