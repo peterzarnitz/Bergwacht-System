@@ -109,7 +109,8 @@ class Member_Trainings(models.Model):
     training = models.ForeignKey(Training, on_delete=models.CASCADE, verbose_name='Ausbildung')
 
     class Meta:
-        verbose_name_plural = 'Ausbildung von Mitgliedern'
+        verbose_name_plural = 'Ausbildungen von Mitgliedern'
+        verbose_name = 'Ausbildung von Mitglied'
 
     def __unicode__(self):
         return unicode(self.member) + '-' + unicode(self.training)
