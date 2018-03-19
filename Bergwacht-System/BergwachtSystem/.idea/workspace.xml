@@ -23,11 +23,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="member_detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="member_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/member_administration/templates/member_administration/member_detail.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="695">
               <caret line="80" column="16" lean-forward="true" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trainings/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="11" column="90" lean-forward="true" selection-start-line="11" selection-start-column="90" selection-end-line="11" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BergwachtSystem/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -140,7 +160,6 @@
         <option value="$PROJECT_DIR$/duty_scheduler/templates/duty_scheduler/duty_calendar.html" />
         <option value="$PROJECT_DIR$/duty_scheduler/views.py" />
         <option value="$PROJECT_DIR$/static/index.html" />
-        <option value="$PROJECT_DIR$/BergwachtSystem/urls.py" />
         <option value="$PROJECT_DIR$/templates/start.html" />
         <option value="$PROJECT_DIR$/static/datatables/jquery.dataTables.min.js" />
         <option value="$PROJECT_DIR$/duty_scheduler/templates/duty_scheduler/duty_detail.html" />
@@ -171,6 +190,7 @@
         <option value="$PROJECT_DIR$/trainings/admin.py" />
         <option value="$PROJECT_DIR$/member_administration/views.py" />
         <option value="$PROJECT_DIR$/member_administration/templates/member_administration/member_detail.html" />
+        <option value="$PROJECT_DIR$/BergwachtSystem/urls.py" />
       </list>
     </option>
   </component>
@@ -376,13 +396,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/bootstrap/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="4170" column="1" lean-forward="true" selection-start-line="4165" selection-start-column="0" selection-end-line="4170" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/duty_scheduler/templates/duty_scheduler/duty_calendar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -562,13 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BergwachtSystem/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/member_administration/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -604,14 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="40" column="22" lean-forward="true" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trainings/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="90" lean-forward="true" selection-start-line="11" selection-start-column="90" selection-end-line="11" selection-end-column="90" />
           <folding />
         </state>
       </provider>
@@ -696,10 +694,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/trainings/migrations/0004_auto_20180319_1547.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/member_administration/templates/member_administration/member_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="695">
           <caret line="80" column="16" lean-forward="true" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trainings/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="90" lean-forward="true" selection-start-line="11" selection-start-column="90" selection-end-line="11" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BergwachtSystem/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding />
         </state>
       </provider>
