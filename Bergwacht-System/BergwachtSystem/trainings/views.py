@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.utils import timezone
 from django.db.models.functions import Now
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
@@ -38,10 +37,11 @@ def training_dates(request):
 def register_time_for_training(request, training_event_id):
     currentMember = Member.objects.get(user=request.user)
     training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
+    datetime = Now()
     Possible_participates_in_trainingevent.objects.create(
         member=currentMember,
         trainingevent=training_event,
-        first_register_timestamp = Now()
+        first_register_timestamp = datetime
     )
     return redirect('/ausbildung/termine/')
 
