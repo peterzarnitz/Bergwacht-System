@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import datetime
 from django.db import models
 from member_administration.models import Member
 
@@ -92,7 +93,7 @@ class Possible_participates_in_trainingevent(models.Model):
     trainingevent = models.ForeignKey(TrainingEvent, on_delete=models.CASCADE)
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
     comment = models.TextField(verbose_name='Kommentar', max_length=200, blank=True)
-    first_register_timestamp = models.DateTimeField(verbose_name='Erste Anmeldung', editable=True)
+    first_register_timestamp = models.DateTimeField(default=datetime.now, verbose_name='Erste Anmeldung', editable=True)
 
     class Meta:
         verbose_name_plural = 'Mögliche Teilnahmen an Ausbildungstermin'
