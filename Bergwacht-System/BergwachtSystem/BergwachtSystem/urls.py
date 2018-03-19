@@ -25,7 +25,7 @@ admin.autodiscover()
 urlpatterns = [
                   url(r'^login/$', auth_views.login, name='login'),
                   url(r'^logout/$', auth_views.logout, name='logout'),
-                  url(r'^admin/', admin.site.urls),
+                  url(r'^admin/', include(admin.site.urls)),
                   url(r'^start/$', TemplateView.as_view(template_name='start.html'), name='start'),
                   url(r'^mitglieder/', include('member_administration.urls')),
                   url(r'^dienstplan/', include('duty_scheduler.urls')),
