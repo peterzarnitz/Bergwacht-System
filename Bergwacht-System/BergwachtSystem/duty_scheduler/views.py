@@ -21,10 +21,11 @@ def duty_list(request):
 def duty_detail(request, duty_number):
     try:
         duty = Duty.objects.get(duty_number=duty_number)
+        current_member = Member.objects.get(user=request.user)
         duty.members.order_by('-status', 'user__last_name')
     except Duty.DoesNotExist:
         raise Http404("Dienst existiert nicht")
-    return render(request, 'duty_scheduler/duty_detail.html', {'duty': duty})
+    return render(request, 'duty_scheduler/duty_detail.html', {'duty': duty, 'current_member': current_member})
 
 
 @login_required

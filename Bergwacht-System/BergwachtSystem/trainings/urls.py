@@ -21,4 +21,8 @@ urlpatterns = [
         name='register_for_training'),
     url(r'^abmeldung/(?P<training_event_id>[0-9]+)/(?P<username>[a-z]+)/$', views.deregister_for_training,
         name='deregister_for_training'),
+    url(r'^teilnahmeeintragen/(?P<training_event_id>[0-9]+)/$', views.accept_member_trainings,
+        name='accept_member_trainings'),
+    url(r'^teilnahmeeintragen/(?P<training_event_id>[0-9]+)/(?P<username>[a-z]+)/$', views.register_member_training,
+        name='register_member_training'),
 ]

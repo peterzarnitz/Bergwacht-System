@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from member_administration.models import Member
 from trainings.models import Training, TrainingEvent, Possible_participates_in_trainingevent, \
-    Participates_in_trainingevent
+    Participates_in_trainingevent, Prerequisites_for_training, Member_Trainings
 
 
 @login_required
@@ -40,7 +40,7 @@ def register_time_for_training(request, training_event_id):
     Possible_participates_in_trainingevent.objects.create(
         member=currentMember,
         trainingevent=training_event,
-        first_register_timestamp = timezone.now()
+        first_register_timestamp=timezone.now()
     )
     return redirect('/ausbildung/termine/')
 
@@ -60,7 +60,7 @@ def deregister_user_time_for_training(request, training_event_id, username):
     member = Member.objects.get(user=user)
     training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
     Possible_participates_in_trainingevent.objects.filter(member=member, trainingevent=training_event).delete()
-    return redirect('/ausbildung/freischalten/' + str(training_event_id) + '/')
+    return redirect('/ausbildung/freischalten/' + unicode(training_event_id) + '/')
 
 
 @login_required
@@ -70,7 +70,8 @@ def register_for_training(request, training_event_id, username):
     member = Member.objects.get(user=user)
     training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
 
-    possible_participates_in_trainingevent = Possible_participates_in_trainingevent.objects.get(member=member, trainingevent=training_event)
+    possible_participates_in_trainingevent = Possible_participates_in_trainingevent.objects.get(member=member,
+                                                                                                trainingevent=training_event)
 
     Participates_in_trainingevent.objects.create(
         member=member,
@@ -78,7 +79,7 @@ def register_for_training(request, training_event_id, username):
         first_register_timestamp=possible_participates_in_trainingevent.first_register_timestamp
     )
     possible_participates_in_trainingevent.delete()
-    return redirect('/ausbildung/freischalten/' + str(training_event_id) + '/')
+    return redirect('/ausbildung/freischalten/' + unicode(training_event_id) + '/')
 
 
 @login_required
@@ -88,7 +89,8 @@ def deregister_for_training(request, training_event_id, username):
     member = Member.objects.get(user=user)
     training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
 
-    participates_in_trainingevent = Participates_in_trainingevent.objects.get(member=member, trainingevent=training_event)
+    participates_in_trainingevent = Participates_in_trainingevent.objects.get(member=member,
+                                                                              trainingevent=training_event)
 
     Possible_participates_in_trainingevent.objects.create(
         member=member,
@@ -96,7 +98,7 @@ def deregister_for_training(request, training_event_id, username):
         first_register_timestamp=participates_in_trainingevent.first_register_timestamp
     )
     participates_in_trainingevent.delete()
-    return redirect('/ausbildung/freischalten/' + str(training_event_id) + '/')
+    return redirect('/ausbildung/freischalten/' + unicode(training_event_id) + '/')
 
 
 @login_required
@@ -107,3 +109,22 @@ def permit_for_training(request, training_event_id):
 
     return render(request, 'trainings/training_permit.html',
                   {'training_event': training_event, 'nav': 'dates', 'possible_participants': possible_participants})
+
+
+@login_required
+@user_passes_test(lambda u: u.has_perm('trainings.can_add_member_trainings'))
+def accept_member_trainings(request, training_event_id):
+    training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
+
+    return render(request, 'trainings/training_accept_member_trainings.html',
+                  {'nav': 'dates', 'training_event': training_event, })
+
+
+@login_required
+def register_member_training(request, training_event_id, username):
+    user = User.objects.get(username = username)
+    member = Member.objects.get(user = user)
+    training_event = TrainingEvent.objects.get(training_event_id=training_event_id)
+    Member_Trainings.objects.get_or_create(member=member, training=training_event.training, date=training_event.event_end.date())
+    return redirect(
+        '/ausbildung/teilnahmeeintragen/' + unicode(training_event_id) + '/')

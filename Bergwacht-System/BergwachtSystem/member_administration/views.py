@@ -8,7 +8,7 @@ from django.template import loader
 from django.shortcuts import render
 
 from .models import Member, User, Qualification, MemberHasQualification
-from trainings.models import TrainingCategory, Member_Trainings
+from trainings.models import TrainingCategory, Member_Trainings, Training
 
 
 @login_required
@@ -29,7 +29,11 @@ def member_detail(request, username):
         all_qualifications = Qualification.objects.all()
         all_trainingCategories = TrainingCategory.objects.all()
         member_qualifications = MemberHasQualification.objects.filter(member=member)
-        all_Trainings = Member_Trainings.objects.filter(member=member)
+        all_trainings = Training.objects.all()
+        member_trainings = Member_Trainings.objects.filter(member=member)
+
+        training_list = Member_Trainings.objects.filter(member=member).values_list('training', flat=True)
+
     except Member.DoesNotExist:
         raise Http404("Mitglied existiert nicht")
     return render(request, 'member_administration/member_detail.html',
@@ -37,5 +41,7 @@ def member_detail(request, username):
                    'member_qualifications': member_qualifications,
                    'all_qualifications': all_qualifications,
                    'all_trainingCategories': all_trainingCategories,
-                   'all_Trainings': all_Trainings,
+                   'all_trainings': all_trainings,
+                   'member_trainings': member_trainings,
+                   'training_list': training_list,
                    })

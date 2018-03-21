@@ -107,6 +107,7 @@ class Possible_participates_in_trainingevent(models.Model):
 class Member_Trainings(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, verbose_name='Mitglied')
     training = models.ForeignKey(Training, on_delete=models.CASCADE, verbose_name='Ausbildung')
+    date = models.DateField(verbose_name='Datum', null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Ausbildungen von Mitgliedern'

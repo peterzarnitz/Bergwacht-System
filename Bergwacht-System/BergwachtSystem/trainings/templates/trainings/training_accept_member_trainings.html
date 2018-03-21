@@ -1,0 +1,55 @@
+{% extends 'training_base.html' %}
+
+
+{% block title %} Ausbildungen {% endblock %}
+
+{% block training_content %}
+<div class="page-header">
+    <h2>Ausbildung
+        <small>Ausbildung für Teilnehmer eintragen</small>
+    </h2>
+</div>
+<div class="row">
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    Ausbildung Details
+                </h2>
+            </div>
+            <table class="table">
+                {% for member in training_event.participants.all %}
+                <tr>
+                    <td><a href="{% url 'member_administration:member_detail' member.user.username %}">
+                        {{ member.user.last_name }}, {{ member.user.first_name }}</a>
+                    </td>
+                    <td>
+                        {% if training_event.training in member.trainings.all %}
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        {% else %}
+                        <a href="{% url 'trainings:register_member_training' training_event.training_event_id member.user.username %}"
+                           class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"
+                                                                aria-hidden="true"></span></a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Aktionen</h3>
+            </div>
+            <div class="btn-group-vertical btn-block" role="group">
+                <a href="#"
+                   class="btn btn-default">Alle eintragen</a>
+                <a href="#"
+                   class="btn btn-danger">Ausbildung schließen</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

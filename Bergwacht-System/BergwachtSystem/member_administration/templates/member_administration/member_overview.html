@@ -12,25 +12,21 @@
             <th>Name</th>
             <th>Status</th>
             <th>Trupp</th>
-            <th>Handynummer</th>
-            <th>E-Mail</th>
+            <th>Kontakt</th>
         </tr>
         </thead>
         <tbody>
         {% for member in member_list %}
         <tr>
-            <td><a class="btn btn-default" href="{% url 'member_administration:member_detail' member.user.username %}"
-                   role="button"> {{ member.user.last_name }}, {{ member.user.first_name }}</a>
-            </td>
+            <td><a href="{% url 'member_administration:member_detail' member.user.username %}">
+                {{ member.user.last_name }}, {{ member.user.first_name }} </a></td>
             <td>{{ member.get_status_display }}</td>
             <td>{% for dutygroup in member.dutygroups.all %}
                 {{ dutygroup.name }} <br>
                 {% endfor %}
             </td>
-            <td>{{ member.mobile }}</td>
-            <td>
-                <a class="btn btn-default" href="mailto:{{ member.user.email }}" role="button">
-                {{ member.user.email }}</a>
+            <td><a href="tel:{{ member.mobile }}" class="btn btn-primary" role="button">Anrufen</a>
+                <a href="mailto:{{ member.user.email }}" class="btn btn-primary" role="button">Mail</a>
             </td>
         </tr>
         {% endfor %}

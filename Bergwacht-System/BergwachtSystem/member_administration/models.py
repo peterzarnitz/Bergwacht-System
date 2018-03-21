@@ -42,6 +42,10 @@ class Member(models.Model):
     status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='ANW')
     dutygroups = models.ManyToManyField(DutyGroup, through='Members_in_Dutygroup',
                                         through_fields=('member', 'dutygroup'), related_name='dutygroups')
+    trainings = models.ManyToManyField('trainings.Training', through='trainings.Member_Trainings', through_fields=('member', 'training'),
+                                       related_name='trainings')
+
+    avatar = models.ImageField(verbose_name='Portrait', null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Mitglieder'

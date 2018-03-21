@@ -1,91 +1,119 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% if member %}
 {% block title %} {{ member.user.first_name }} {{ member.user.last_name }} {% endblock %}
 
 {% block content %}
-<p>
-    <a class="btn btn-default" href="{% url 'member_administration:index' %}" role="button"><span
-            class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Zurück zur Liste</a>
-</p>
-<h1>{{ member.user.first_name }} {{ member.user.last_name }}</h1>
-<div id="content1" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <tr>
-                <th>Status</th>
-                <td>{{ member.get_status_display }}</td>
-            </tr>
-            <tr>
-                <th>E-Mail</th>
-                <td><a href="mailto: {{ member.user.email }}">{{ member.user.email }}</a></td>
-            </tr>
-            <tr>
-                <th>Handy</th>
-                <td>{% if member.mobile %}{{ member.mobile }}{% endif %}</td>
-            </tr>
-            {% if member.adress_street %}
-            <tr>
-                <th>Adresse</th>
-                <td>{{ member.adress_street }}<br>{{ member.adress_plz }} {{ member.adress_ort }}</td>
-            </tr>
-            {% endif %}
-            <tr>
-                <th>Geburtstag / Alter</th>
-                <td>{{ member.birthdate }} / {{ member.getAge }}</td>
-            </tr>
-            <tr>
-                <th>BW Eintritt</th>
-                <td>{{ member.bw_join }}</td>
-            </tr>
-            <tr>
-                <th>Trupp</th>
-                <td>
-                    {% for dutygroup in member.dutygroups.all %}
-                    {{ dutygroup.name }} <br>
-                    {% endfor %}
-                </td>
-            </tr>
-            {% if all_qualifications %}
-            <tr>
-                <th>Qualifikationen</th>
-                <td>
-                    {% for qualification in all_qualifications %}
-                    {% for member_qualification in member_qualifications %}
-                    {% if qualification == member_qualification.qualification %}
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    {% else %}
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    {% endif %}
-                    {{ qualification.name }}
-                    {% if qualification == member_qualification.qualification %}
-                    ({{ member_qualification.date | date:'d.m.Y' }})
-                    {% endif %}
-                    {% endfor %}
-                    <br>
-                    {% endfor %}
-                </td>
-            </tr>
-            {% endif %}
-        </table>
-    </div>
+<div class="block-header">
+    <h1>
+        {% if member.avatar %}
+        <a href="{{ member.avatar.url }}">
+            <img src="{{ member.avatar.url }}" class="img-circle" width="80">
+        </a>
+        {% else %}
+        <img src="{% static 'img/Logo-nurEW.png' %}" class="img-circle" width="80">
+        {% endif %}
+        {{ member.user.first_name }} {{ member.user.last_name }}
+    </h1>
 </div>
 
-<div id="content2" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    {% for training_category in all_trainingCategories %}
-    <div class="table-responsive">
-        <h2>{{ training_category.name }}</h2>
-        <table class="table table-bordered">
-            {% for membertraining in all_Trainings %}
-            {% if membertraining.training.category == training_category  %}
-            <tr>
-                {{ membertraining.training.name }}
-            </tr>
-            {% endif %}
-            {% endfor %}
-        </table>
+<div class="row">
+    <div id="content1" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Status</th>
+                    <td>{{ member.get_status_display }}</td>
+                </tr>
+                <tr>
+                    <th>E-Mail</th>
+                    <td><a href="mailto: {{ member.user.email }}">{{ member.user.email }}</a></td>
+                </tr>
+                <tr>
+                    <th>Handy</th>
+                    <td>{% if member.mobile %}{{ member.mobile }}{% endif %}</td>
+                </tr>
+                {% if member.adress_street %}
+                <tr>
+                    <th>Adresse</th>
+                    <td>{{ member.adress_street }}<br>{{ member.adress_plz }} {{ member.adress_ort }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th>Geburtstag / Alter</th>
+                    <td>{{ member.birthdate }} / {{ member.getAge }}</td>
+                </tr>
+                <tr>
+                    <th>BW Eintritt</th>
+                    <td>{{ member.bw_join }}</td>
+                </tr>
+                <tr>
+                    <th>Trupp</th>
+                    <td>
+                        {% for dutygroup in member.dutygroups.all %}
+                        {{ dutygroup.name }} <br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% if all_qualifications %}
+                <tr>
+                    <th>Qualifikationen</th>
+                    <td>
+                        {% for qualification in all_qualifications %}
+                        {% if qualification in member_qualifications %}
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        {% else %}
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        {% endif %}
+                        {{ qualification.name }}
+                        {% if qualification in member_qualifications %}
+                        ({{ member_qualification.date | date:'d.m.Y' }})
+                        {% endif %}
+                        <br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
     </div>
-    {% endfor %}
+
+    <div id="content2" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        {% for training_category in all_trainingCategories %}
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    {{ training_category.name }}
+                </h2>
+            </div>
+            <table class="table table-bordered">
+                {% for training in all_trainings %}
+
+                {% if training.category == training_category %}
+                <tr>
+                    <td style='text-align:center'>
+                        {% if training.name in training_list %}
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        {% endif %}
+                    </td>
+                    <td>{{ training.name }}</td>
+                    <td>
+                        {% for member_training in member_trainings %}
+                        {% if member_training.training == training %}
+                        {{ member_training.date | date:'d.m.Y' }} <br>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+
+                {% endfor %}
+            </table>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

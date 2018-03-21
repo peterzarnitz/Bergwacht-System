@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from member_administration.models import Member
-
+from django.utils import timezone
 
 class Dutyarea(models.Model):
     name = models.CharField(primary_key=True, max_length=40, verbose_name='Name')
@@ -14,7 +14,7 @@ class Dutyarea(models.Model):
         verbose_name = 'Dienstgebiet'
 
     def __unicode__(self):
-        return self.name.encode('utf-8')
+        return self.name
 
 
 class Dutycategory(models.Model):
@@ -25,7 +25,7 @@ class Dutycategory(models.Model):
         verbose_name = 'Dienstkategorie'
 
     def __unicode__(self):
-        return self.name.encode('utf-8')
+        return self.name
 
 
 class Dutyrole(models.Model):
@@ -37,7 +37,7 @@ class Dutyrole(models.Model):
         verbose_name = 'Dienstrolle'
 
     def __unicode__(self):
-        return self.name.encode('utf-8')
+        return self.name
 
 
 # Defines a "Dienst" of the Bergwacht
@@ -58,10 +58,13 @@ class Duty(models.Model):
         verbose_name = 'Dienste'
 
     def __unicode__(self):
-        return str(self.duty_number).encode('utf-8') + ' ' + str(self.duty_area.name).encode('utf-8')
+        return unicode(self.duty_number) + ' ' + unicode(self.duty_area.name)
 
     def getAEKcount(self):
         return self.members.filter(status='AEK').count()
+
+    def is_closed(self):
+        return (self.duty_start - timezone.now()).days < 15
 
 
 class Takes_part_in_duty(models.Model):
@@ -77,4 +80,4 @@ class Takes_part_in_duty(models.Model):
         verbose_name = 'Dienstteilnahme'
 
     def __unicode__(self):
-        return str(self.duty).encode('utf-8') + ' - ' + str(self.member.user.username).encode('utf-8')
+        return unicode(self.duty) + ' - ' + unicode(self.member.user.username)

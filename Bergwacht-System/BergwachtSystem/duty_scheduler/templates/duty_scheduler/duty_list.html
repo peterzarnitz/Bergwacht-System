@@ -8,14 +8,13 @@
 <h1>Dienstplan</h1>
 
 <ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="#"> Liste </a></li>
-  <li role="presentation"><a href="{% url 'duty_scheduler:duty_calendar' %}"> Kalender </a></li>
+    <li role="presentation" class="active"><a href="#"> Liste </a></li>
+    <li role="presentation"><a href="{% url 'duty_scheduler:duty_calendar' %}"> Kalender </a></li>
 </ul>
 
 <div class="table-responsive">
-    <table class="table">
+    <table class="table table-striped table-bordered">
         <tr>
-            <th>Nr.</th>
             <th>Gebiet</th>
             <th>Beginn</th>
             <th>Ende</th>
@@ -27,8 +26,6 @@
         </tr>
         {% for duty in duty_list %}
         <tr>
-            <td><a href="{% url 'duty_scheduler:duty_detail' duty.duty_number %}" class="btn btn-default"
-                   role="button">{{ duty.duty_number }}</a></td>
             <td>{% if duty.duty_area.link %}
                 <a href="{{ duty.duty_area.link }}">{{ duty.duty_area.name }}</a>
                 {% else %}
@@ -37,7 +34,9 @@
             </td>
             <td>{{ duty.duty_start|date:'d.m.Y' }}<br>{{ duty.duty_start|date:'H:i' }}</td>
             <td>{{ duty.duty_end|date:'d.m.Y' }}<br>{{ duty.duty_end|date:'H:i' }}</td>
-            <td>{{ duty.category }}<br>{% if not duty.detail is null %}{{ duty.detail }}{% endif %}</td>
+            <td>{{ duty.category }}<br>{% if not duty.detail is null %}{{ duty.detail }}{% endif %}
+            {{ duty.is_closed }}
+            </td>
             <td>
                 <div class="progress">
                     {% if duty.getAEKcount == 0 %}
@@ -81,16 +80,20 @@
                 {% endfor %}
             </td>
             <td>
+                <a href="{% url 'duty_scheduler:duty_detail' duty.duty_number %}" class="btn btn-default"
+                   role="button"><span class="glyphicon glyphicon-info-sign"
+                                       aria-hidden="true"></span></a>
                 {% if current_member in duty.members.all %}
                 <a href="{% url 'duty_scheduler:duty_signout' duty.duty_number %}"
-                   class="btn btn-danger"
+                   class="btn btn-danger {% if duty.is_closed %}disabled{% endif %}"
                    role="button">Abmelden</a>
                 {% else %}
-                <a href="{% url 'duty_scheduler:duty_signin' duty.duty_number %}" class="btn btn-primary"
+                <a href="{% url 'duty_scheduler:duty_signin' duty.duty_number %}"
+                   class="btn btn-primary {% if duty.is_closed %}disabled{% endif %}"
                    role="button">Anmelden</a>
                 {% endif %}
-                <a href="mailto: {% for member in duty.members.all %}{{ member.user.email }}, {% endfor %} "
-                   class="btn btn-success" role="button">Mail</a>
+                <!-- <a href="mailto: {% for member in duty.members.all %}{{ member.user.email }}, {% endfor %} "
+                   class="btn btn-success" role="button">Mail</a> -->
             </td>
         </tr>
         {% endfor %}
