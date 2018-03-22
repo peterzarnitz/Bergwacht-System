@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from django.utils import timezone
 from django.shortcuts import render, redirect
 
 from .forms import Duty_signup_form
@@ -12,9 +12,16 @@ from .models import Duty, Member, Takes_part_in_duty
 
 @login_required
 def duty_list(request):
+    duty_list = Duty.objects.filter(duty_start__gte =  timezone.now()).order_by('duty_start', 'duty_area')
+    return render(request, 'duty_scheduler/duty_list.html',
+                  {'duty_list': duty_list, 'current_member': Member.objects.get(user=request.user), 'show_all': False})
+
+
+@login_required
+def duty_list_all(request):
     duty_list = Duty.objects.order_by('duty_start', 'duty_area')
     return render(request, 'duty_scheduler/duty_list.html',
-                  {'duty_list': duty_list, 'current_member': Member.objects.get(user=request.user)})
+                  {'duty_list': duty_list, 'current_member': Member.objects.get(user=request.user), 'show_all': True})
 
 
 @login_required
