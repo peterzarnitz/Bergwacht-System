@@ -108,6 +108,14 @@ WSGI_APPLICATION = 'BergwachtSystem.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+'''
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'bwsysdb',  # Or path to database file if using sqlite3.
@@ -118,6 +126,7 @@ DATABASES = {
         'PORT': '',  # Set to empty string for default.
     }
 }
+'''
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
