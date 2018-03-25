@@ -7,6 +7,19 @@
 {% block content %}
 
 <div class="row">
+    <ul class="nav nav-tabs nav-justified">
+        {% for child in children %}
+        <li role="presentation"><a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}"
+                                   class="list-group-item child {% if child.selected %}active selected{% endif %} {% if child.ancestor %}ancestor{% endif %} {% if child.sibling %}sibling{% endif %} {% if child.descendant %}descendant{% endif %}">
+            <b>{{ child.get_menu_title }}</b></a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="row">
+ &nbsp;
+</div>
+
+<div class="row">
     <div class="col-md-3">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -14,14 +27,20 @@
             </div>
             <div class="list-group">
                 {% for child in children %}
-                <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}"
-                   class="list-group-item child {% if child.selected %}active selected{% endif %} {% if child.ancestor %}ancestor{% endif %} {% if child.sibling %}sibling{% endif %} {% if child.descendant %}descendant{% endif %}">
-                    <b>{{ child.get_menu_title }}</b></a>
                 {% if child.children %}
                 {% for child2 in child.children %}
                 <a href="{{ child2.attr.redirect_url|default:child2.get_absolute_url }}"
                    class="list-group-item child {% if child2.selected %}active selected{% endif %} {% if child2.ancestor %}ancestor{% endif %} {% if child2.sibling %}sibling{% endif %} {% if child2.descendant %}descendant{% endif %}">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> {{ child2.get_menu_title }}</a>
+
+                {% if child2.children %}
+                {% for child3 in child2.children %}
+                <a href="{{ child3.attr.redirect_url|default:child3.get_absolute_url }}"
+                   class="list-group-item child {% if child3.selected %}active selected{% endif %} {% if child3.ancestor %}ancestor{% endif %} {% if child3.sibling %}sibling{% endif %} {% if child3.descendant %}descendant{% endif %}">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> {{ child3.get_menu_title }}</a>
+                {% endfor %}
+                {% endif %}
+
                 {% endfor %}
                 {% endif %}
                 {% endfor %}
