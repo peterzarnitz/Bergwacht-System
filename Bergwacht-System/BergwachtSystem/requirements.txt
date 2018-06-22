@@ -13,4 +13,3 @@ djangocms-snippet
 djangocms-style
 djangocms-column
 psycopg2-binary
-gunicorn
